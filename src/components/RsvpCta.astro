@@ -1,0 +1,24 @@
+---
+import OrnamentDivider from './ornaments/OrnamentDivider.astro';
+import RsvpWidget from './RsvpWidget';
+
+const rsvpDeadline = '24 de agosto de 2026';
+---
+
+<section class="py-24 md:py-32 px-4 sm:px-6 bg-card text-center">
+  <div class="max-w-md mx-auto">
+    <OrnamentDivider />
+    <h2
+      class="font-display text-foreground tracking-[0.2em] mt-6 mb-4 uppercase"
+      style="font-size: clamp(1.4rem, 5vw, 2.2rem)"
+    >
+      Confirma tu Asistencia
+    </h2>
+    <p class="text-foreground/45 text-sm font-body leading-relaxed mb-10">
+      Tu presencia es el regalo más hermoso que puedes darnos.
+      <br />
+      Por favor confirma antes del <span class="text-accent">{rsvpDeadline}</span>.
+    </p>
+    <RsvpWidget client:load />
+  </div>
+</section>

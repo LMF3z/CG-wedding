@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Gallery from '../components/Gallery.astro';
+import Details from '../components/Details.astro';
+import RsvpCta from '../components/RsvpCta.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Nuestra Boda">
+  <div class="bg-background text-foreground min-h-screen font-sans overflow-x-hidden">
+    <Hero />
+    <Gallery />
+    <Details />
+    <RsvpCta />
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,8 @@
+services:
+  wedding-invitation:
+    build: .
+    image: invitation-wedding:latest
+    container_name: wedding-invitation
+    ports:
+      - '3001:3001'
+    restart: unless-stopped

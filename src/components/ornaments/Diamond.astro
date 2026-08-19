@@ -1,0 +1,19 @@
+---
+interface Props {
+  size?: number;
+  opacity?: number;
+}
+
+const { size = 10, opacity = 1 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 10 10"
+  fill="currentColor"
+  style={{ opacity }}
+  class="flex-shrink-0"
+>
+  <polygon points="5,0 10,5 5,10 0,5" />
+</svg>

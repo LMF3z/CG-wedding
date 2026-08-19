@@ -1,0 +1,17 @@
+---
+import { WEDDING_DATE, COUPLE } from '../data/wedding';
+import OrnamentDivider from './ornaments/OrnamentDivider.astro';
+---
+
+<footer class="py-14 px-6 text-center bg-background border-t border-accent/15">
+  <p class="font-script text-accent mb-3" style="font-size: 2rem">
+    {COUPLE.bride} &amp; {COUPLE.groom}
+  </p>
+  <p class="text-foreground/25 text-[9px] tracking-[0.5em] uppercase font-body">
+    {WEDDING_DATE}
+  </p>
+  <OrnamentDivider class="mt-8 max-w-xs mx-auto" />
+  <p class="text-foreground/15 text-[9px] font-body tracking-widest mt-5 uppercase">
+    Con todo nuestro amor
+  </p>
+</footer>

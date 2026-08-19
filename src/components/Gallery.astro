@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import { PHOTOS } from '../data/wedding';
+import OrnamentDivider from './ornaments/OrnamentDivider.astro';
+import SectionLabel from './ornaments/SectionLabel.astro';
+
+const [first, second, third] = PHOTOS;
+---
+
+<section class="py-20 md:py-28 px-4 sm:px-6 bg-card">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <OrnamentDivider />
+      <SectionLabel>Nuestros momentos</SectionLabel>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 items-end">
+      <div class="relative overflow-hidden group bg-secondary" style="aspect-ratio: 2/3">
+        <Image
+          src={first.src}
+          alt={first.alt}
+          width={1920}
+          height={2560}
+          format="webp"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        <div class="absolute inset-0 bg-background/30 group-hover:bg-transparent transition-colors duration-500" />
+        <div class="absolute inset-0 border border-accent/15 pointer-events-none" />
+      </div>
+
+      <div class="relative overflow-hidden group bg-secondary sm:-mt-10" style="aspect-ratio: 9/13">
+        <Image
+          src={second.src}
+          alt={second.alt}
+          width={1920}
+          height={2560}
+          format="webp"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        <div class="absolute inset-0 bg-background/30 group-hover:bg-transparent transition-colors duration-500" />
+        <div class="absolute inset-0 border border-accent/15 pointer-events-none" />
+      </div>
+
+      <div class="relative overflow-hidden group bg-secondary" style="aspect-ratio: 2/3">
+        <Image
+          src={third.src}
+          alt={third.alt}
+          width={1920}
+          height={2560}
+          format="webp"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        <div class="absolute inset-0 bg-background/30 group-hover:bg-transparent transition-colors duration-500" />
+        <div class="absolute inset-0 border border-accent/15 pointer-events-none" />
+      </div>
+    </div>
+  </div>
+</section>

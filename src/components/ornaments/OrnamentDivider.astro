@@ -1,0 +1,19 @@
+---
+import Diamond from './Diamond.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`flex items-center gap-3 text-accent ${className}`}>
+  <div class="flex-1 h-px bg-accent opacity-25" />
+  <Diamond size={7} opacity={0.5} />
+  <div class="w-2 h-px bg-accent opacity-35" />
+  <Diamond size={11} />
+  <div class="w-2 h-px bg-accent opacity-35" />
+  <Diamond size={7} opacity={0.5} />
+  <div class="flex-1 h-px bg-accent opacity-25" />
+</div>

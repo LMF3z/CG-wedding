@@ -1,0 +1,111 @@
+---
+import { Image } from 'astro:assets';
+import { HERO_IMAGE, WEDDING_DATE, COUPLE } from '../data/wedding';
+import OrnamentDivider from './ornaments/OrnamentDivider.astro';
+import ThinRule from './ornaments/ThinRule.astro';
+import CornerOrnament from './ornaments/CornerOrnament.astro';
+import { ChevronDownIcon } from './Icons';
+---
+
+<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={HERO_IMAGE}
+      alt="Pareja de novios"
+      class="w-full h-full object-cover"
+      style="opacity: 0.15"
+      width={896}
+      height={1195}
+      format="webp"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(180deg, #1c0509 0%, rgba(28,5,9,0.55) 35%, rgba(28,5,9,0.55) 65%, #1c0509 100%)"
+    />
+  </div>
+
+  <div class="absolute top-8 left-8 opacity-20 hidden sm:block">
+    <CornerOrnament />
+  </div>
+  <div
+    class="absolute top-8 right-8 opacity-20 hidden sm:block"
+    style="transform: scaleX(-1)"
+  >
+    <CornerOrnament />
+  </div>
+  <div
+    class="absolute bottom-8 left-8 opacity-20 hidden sm:block"
+    style="transform: scaleY(-1)"
+  >
+    <CornerOrnament />
+  </div>
+  <div
+    class="absolute bottom-8 right-8 opacity-20 hidden sm:block"
+    style="transform: scale(-1,-1)"
+  >
+    <CornerOrnament />
+  </div>
+
+  <div class="relative z-10 text-center w-full max-w-lg mx-auto">
+    <p class="font-body text-accent/70 text-[9px] tracking-[0.6em] uppercase mb-8">
+      Con toda nuestra alegría, los invitamos
+    </p>
+
+    <OrnamentDivider class="mb-8" />
+
+    <h1
+      class="font-display text-foreground leading-none mb-1"
+      style="font-size: clamp(2.8rem, 10vw, 5.5rem); letter-spacing: 0.06em"
+    >
+      {COUPLE.bride}
+    </h1>
+    <p class="font-script text-accent my-1" style="font-size: clamp(2rem, 7vw, 3.5rem)">
+      &amp;
+    </p>
+    <h1
+      class="font-display text-foreground leading-none mb-8"
+      style="font-size: clamp(2.8rem, 10vw, 5.5rem); letter-spacing: 0.06em"
+    >
+      {COUPLE.groom}
+    </h1>
+
+    <OrnamentDivider class="mb-8" />
+
+    <blockquote class="px-2 mb-8">
+      <p
+        class="font-serif text-foreground/80 italic leading-relaxed"
+        style="font-size: clamp(1rem, 3.5vw, 1.2rem)"
+      >
+        "Y sobre todas estas cosas, vestíos de amor, que es el vínculo perfecto.
+        Guiados por la fe y el cariño de nuestros padres, hoy comenzamos un nuevo
+        camino juntos. Te esperamos para celebrar nuestra unión matrimonial"
+      </p>
+
+      <p>Colosenses 3:14</p>
+    </blockquote>
+
+    <ThinRule />
+
+    <p class="font-display text-accent tracking-[0.35em] text-sm mt-5 uppercase">
+      {WEDDING_DATE}
+    </p>
+
+    <button
+      data-discover
+      class="mt-16 flex flex-col items-center gap-2 mx-auto text-foreground/25 hover:text-accent transition-colors duration-500 cursor-pointer"
+    >
+      <span class="font-body text-[9px] tracking-[0.5em] uppercase">
+        Descubrir
+      </span>
+      <ChevronDownIcon />
+    </button>
+  </div>
+</section>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-discover]');
+  button?.addEventListener('click', () => {
+    document.getElementById('detalles')?.scrollIntoView({ behavior: 'smooth' });
+  });
+</script>

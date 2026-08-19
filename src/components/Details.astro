@@ -1,0 +1,92 @@
+---
+import { CEREMONY, RECEPTION } from '../data/wedding';
+import OrnamentDivider from './ornaments/OrnamentDivider.astro';
+import ThinRule from './ornaments/ThinRule.astro';
+import SectionLabel from './ornaments/SectionLabel.astro';
+import InfoRow from './ornaments/InfoRow.astro';
+import WineGlassIcon from './ornaments/WineGlassIcon.astro';
+import { ClockIcon, HeartIcon, MapPinIcon } from './Icons';
+---
+
+<section id="detalles" class="py-24 md:py-32 px-4 sm:px-6 bg-background">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+      <OrnamentDivider />
+      <h2
+        class="font-display text-foreground tracking-[0.25em] mt-6 uppercase"
+        style="font-size: clamp(1.6rem, 5vw, 2.8rem)"
+      >
+        Los Detalles
+      </h2>
+      <SectionLabel>Todo lo que necesitas saber</SectionLabel>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-accent/15">
+      <div class="px-4 sm:px-10 py-10">
+        <div class="text-center mb-7">
+          <div class="w-14 h-14 rounded-full border border-accent/35 flex items-center justify-center mx-auto mb-5">
+            <HeartIcon />
+          </div>
+          <h3 class="font-display text-lg tracking-[0.25em] text-foreground uppercase">
+            Ceremonia
+          </h3>
+          <ThinRule />
+        </div>
+
+        <div class="space-y-5 max-w-xs mx-auto">
+          <InfoRow>
+            <span slot="icon"><ClockIcon /></span>
+            <span class="text-foreground text-sm">{CEREMONY.time}</span>
+            <span class="text-foreground/40 text-xs mt-0.5">{CEREMONY.timeLabel}</span>
+          </InfoRow>
+          <InfoRow>
+            <span slot="icon"><MapPinIcon /></span>
+            <span class="text-foreground text-sm">{CEREMONY.venue}</span>
+            <span class="text-foreground/40 text-xs mt-0.5">{CEREMONY.address}</span>
+            <a
+              href={CEREMONY.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent text-[10px] tracking-[0.25em] uppercase font-body hover:text-foreground transition-colors duration-200 mt-2 inline-flex items-center gap-1"
+            >
+              Ver en Google Maps <span class="opacity-70">↗</span>
+            </a>
+          </InfoRow>
+        </div>
+      </div>
+
+      <div class="px-4 sm:px-10 py-10">
+        <div class="text-center mb-7">
+          <div class="w-14 h-14 rounded-full border border-accent/35 flex items-center justify-center mx-auto mb-5">
+            <WineGlassIcon />
+          </div>
+          <h3 class="font-display text-lg tracking-[0.25em] text-foreground uppercase">
+            Recepción
+          </h3>
+          <ThinRule />
+        </div>
+
+        <div class="space-y-5 max-w-xs mx-auto">
+          <InfoRow>
+            <span slot="icon"><ClockIcon /></span>
+            <span class="text-foreground text-sm">{RECEPTION.time}</span>
+            <span class="text-foreground/40 text-xs mt-0.5">{RECEPTION.timeLabel}</span>
+          </InfoRow>
+          <InfoRow>
+            <span slot="icon"><MapPinIcon /></span>
+            <span class="text-foreground text-sm">{RECEPTION.venue}</span>
+            <span class="text-foreground/40 text-xs mt-0.5">{RECEPTION.address}</span>
+            <a
+              href={RECEPTION.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent text-[10px] tracking-[0.25em] uppercase font-body hover:text-foreground transition-colors duration-200 mt-2 inline-flex items-center gap-1"
+            >
+              Ver en Google Maps <span class="opacity-70">↗</span>
+            </a>
+          </InfoRow>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
