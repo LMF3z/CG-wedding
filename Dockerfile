@@ -25,7 +25,13 @@ RUN pnpm install --frozen-lockfile --prod
 
 COPY --from=builder /app/dist ./dist
 
+COPY data/guests.json /app/seed/guests.json
+COPY scripts/sync-guests.mjs /app/sync-guests.mjs
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 RUN mkdir -p /app/data
 
 EXPOSE 3001
+ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["node", "./dist/server/entry.mjs"]
