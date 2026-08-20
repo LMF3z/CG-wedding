@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Gallery from '../components/Gallery.astro';
@@ -7,10 +9,26 @@ import RsvpCta from '../components/RsvpCta.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout title="Nuestra Boda">
-  <div class="bg-background text-foreground min-h-screen font-sans overflow-x-hidden">
+<BaseLayout title='Nuestra Boda'>
+  <div
+    class='bg-background text-foreground min-h-screen font-sans overflow-x-hidden'
+  >
     <Hero />
     <Gallery />
+
+    <div class='text-center w-[90%] md:w-1/2 m-auto mt-12 md:mt-16'>
+      <blockquote class='px-2 mb-8 sm:col-span-3'>
+        <p
+          class='font-serif text-foreground/80 italic leading-relaxed'
+          style='font-size: clamp(1rem, 3.5vw, 1.2rem)'
+        >
+          "Guiados por la fe y el cariño de nuestros padres, hoy comenzamos un
+          nuevo camino juntos. Te esperamos para celebrar nuestra unión
+          matrimonial"
+        </p>
+      </blockquote>
+    </div>
+
     <Details />
     <RsvpCta />
     <Footer />
