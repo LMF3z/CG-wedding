@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { readGuests } from '../lib/guests';
+
+export const prerender = false;
+
+const guests = readGuests().sort((a, b) =>
+  a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }),
+);
+const confirmedCount = guests.filter((g) => g.confirmed).length;
+---
+
+<BaseLayout title='Confirmaciones'>
+  <main
+    class='min-h-screen px-4 md:px-32 py-10 font-sans text-foreground bg-background'
+  >
+    <h1 class='font-display text-3xl mb-2'>Confirmaciones</h1>
+    <p class='mb-8 text-foreground/70'>
+      {guests.length} invitaciones · {confirmedCount} confirmadas
+    </p>
+
+    <div class='overflow-x-auto'>
+      <table class='w-full text-left border-collapse text-sm'>
+        <thead>
+          <tr
+            class='border-b border-foreground/20 text-foreground/60 uppercase text-xs'
+          >
+            <th class='py-2 pr-4 font-medium'>#</th>
+            <th class='py-2 pr-4 font-medium'>Invitación</th>
+            <th class='py-2 pr-4 font-medium'>Pases</th>
+            <th class='py-2 pr-4 font-medium'>Confirmado</th>
+            <th class='py-2 font-medium'>Confirmado en</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            guests.map((guest, i) => (
+              <tr class='border-b border-foreground/10'>
+                <td class='py-2 pr-4 text-foreground/50'>{i + 1}</td>
+                <td class='py-2 pr-4'>{guest.name}</td>
+                <td class='py-2 pr-4'>{guest.passes}</td>
+                <td class='py-2 pr-4'>
+                  {guest.confirmed ? (
+                    <span class='text-green-600 font-medium'>Sí</span>
+                  ) : (
+                    <span class='text-foreground/40'>No</span>
+                  )}
+                </td>
+                <td class='py-2 text-foreground/60'>
+                  {guest.confirmedAt
+                    ? new Date(guest.confirmedAt).toLocaleString('es-VE')
+                    : '—'}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </main>
+</BaseLayout>
