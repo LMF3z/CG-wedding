@@ -1,0 +1,74 @@
+---
+import { AUDIOS } from '../data/wedding';
+---
+
+<audio autoplay loop controls id='audio-play' hidden>
+  <source src={AUDIOS[0]} type='audio/mp3' />
+  Tu navegador no soporta el elemento de audio.
+</audio>
+
+<button
+  class='fixed w-12 h-12 bottom-8 right-8 flex justify-center items-center z-50 bg-white rounded-4xl'
+  id='btn-play'
+>
+  <svg
+    id='play-icon'
+    xmlns='http://www.w3.org/2000/svg'
+    width='32'
+    height='32'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    stroke-width='2'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+    class='lucide lucide-circle-play-icon lucide-circle-play text-[#210a0d]'
+    ><path
+      d='M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z'
+    ></path><circle cx='12' cy='12' r='10'></circle></svg
+  >
+
+  <svg
+    id='pause-icon'
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    stroke-width='2'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+    class='lucide lucide-play-off-icon lucide-play-off text-[#210a0d] hidden'
+    ><path d='m10.215 4.56 9.79 5.71a2 2 0 0 1 .003 3.458l-.393.23'></path><path
+      d='m16.042 16.042-8.034 4.686A2 2 0 0 1 5 19V5'></path><path
+      d='m2 2 20 20'></path></svg
+  >
+</button>
+
+<script>
+  let play = false;
+  const audio = document.getElementById('audio-play') as HTMLAudioElement;
+  const btnPlay = document.getElementById('btn-play');
+
+  btnPlay?.addEventListener('click', () => {
+    if (play) {
+      audio.pause();
+      play = false;
+      document.querySelector('#play-icon')?.classList.remove('hidden');
+      document.querySelector('#pause-icon')?.classList.add('hidden');
+      return;
+    }
+
+    audio
+      .play()
+      .then(() => {
+        play = true;
+        document.querySelector('#play-icon')?.classList.add('hidden');
+        document.querySelector('#pause-icon')?.classList.remove('hidden');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+</script>

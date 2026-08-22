@@ -2,8 +2,11 @@ import heroImage from '../assets/images/photo-1.jpeg';
 import photo2 from '../assets/images/photo-2.jpeg';
 import photo3 from '../assets/images/photo-3.jpeg';
 import photo4 from '../assets/images/photo-4.jpeg';
+import audioBackground from '../assets/audios/Imagine Dragons - Next To Me.mp3';
 
 export const WEDDING_DATE = '24 · Septiembre · 2026';
+
+export const WEDDING_DATE_ISO = '2026-09-24T20:00:00';
 
 export const RSVP_DEADLINE = '24 de agosto de 2026';
 
@@ -16,6 +19,8 @@ export const PHOTOS = [
   { src: photo2, alt: 'Foto de la pareja' },
   { src: photo3, alt: 'Foto de la pareja' },
 ];
+
+export const AUDIOS = [audioBackground];
 
 export const CEREMONY = {
   time: '8:00 PM',
@@ -31,5 +36,6 @@ export const RECEPTION = {
   timeLabel: 'Inicio de la recepción',
   venue: 'Hato club San Francisco',
   address: 'Calle 17, San Francisco - Coromoto',
-  mapsUrl: 'https://www.google.com/maps/search/Hato%20Club%20San%20Francisco/@10.5633,-71.6204,17z?hl=es',
+  mapsUrl:
+    'https://www.google.com/maps/search/Hato%20Club%20San%20Francisco/@10.5633,-71.6204,17z?hl=es',
 };

@@ -1,0 +1,143 @@
+---
+import { WEDDING_DATE_ISO } from '../data/wedding';
+import OrnamentDivider from './ornaments/OrnamentDivider.astro';
+import SectionLabel from './ornaments/SectionLabel.astro';
+import ThinRule from './ornaments/ThinRule.astro';
+---
+
+<section
+  id='cuenta-regresiva'
+  class='py-12 md:py-16 px-4 sm:px-6 bg-background'
+>
+  <div class='max-w-4xl mx-auto'>
+    <div class='text-center mb-12'>
+      <OrnamentDivider />
+      <h2
+        class='font-display text-foreground tracking-[0.25em] mt-6 uppercase'
+        style='font-size: clamp(1.6rem, 5vw, 2.8rem)'
+      >
+        Cuenta Regresiva
+      </h2>
+      <SectionLabel>Faltan pocos días para nuestro gran día</SectionLabel>
+    </div>
+
+    <div
+      id='countdown'
+      class='grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 max-w-2xl mx-auto'
+      data-target={WEDDING_DATE_ISO}
+    >
+      <div class='text-center'>
+        <div
+          id='countdown-days'
+          class='font-display text-foreground tracking-wider'
+          style='font-size: clamp(2.4rem, 8vw, 4rem)'
+        >
+          --
+        </div>
+        <ThinRule />
+        <p
+          class='font-body text-accent/60 tracking-[0.35em] uppercase'
+          style='font-size: clamp(0.6rem, 2vw, 0.75rem)'
+        >
+          Días
+        </p>
+      </div>
+      <div class='text-center'>
+        <div
+          id='countdown-hours'
+          class='font-display text-foreground tracking-wider'
+          style='font-size: clamp(2.4rem, 8vw, 4rem)'
+        >
+          --
+        </div>
+        <ThinRule />
+        <p
+          class='font-body text-accent/60 tracking-[0.35em] uppercase'
+          style='font-size: clamp(0.6rem, 2vw, 0.75rem)'
+        >
+          Horas
+        </p>
+      </div>
+      <div class='text-center'>
+        <div
+          id='countdown-minutes'
+          class='font-display text-foreground tracking-wider'
+          style='font-size: clamp(2.4rem, 8vw, 4rem)'
+        >
+          --
+        </div>
+        <ThinRule />
+        <p
+          class='font-body text-accent/60 tracking-[0.35em] uppercase'
+          style='font-size: clamp(0.6rem, 2vw, 0.75rem)'
+        >
+          Minutos
+        </p>
+      </div>
+      <div class='text-center'>
+        <div
+          id='countdown-seconds'
+          class='font-display text-foreground tracking-wider'
+          style='font-size: clamp(2.4rem, 8vw, 4rem)'
+        >
+          --
+        </div>
+        <ThinRule />
+        <p
+          class='font-body text-accent/60 tracking-[0.35em] uppercase'
+          style='font-size: clamp(0.6rem, 2vw, 0.75rem)'
+        >
+          Segundos
+        </p>
+      </div>
+    </div>
+
+    <div id='countdown-done' class='hidden text-center'>
+      <p
+        class='font-serif text-foreground/80 italic'
+        style='font-size: clamp(1.1rem, 3.5vw, 1.4rem)'
+      >
+        ¡Es el día de nuestra boda!
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initCountdown() {
+    const el = document.getElementById('countdown');
+    if (!el) return;
+
+    const target = new Date(el.dataset.target!).getTime();
+    const daysEl = document.getElementById('countdown-days')!;
+    const hoursEl = document.getElementById('countdown-hours')!;
+    const minutesEl = document.getElementById('countdown-minutes')!;
+    const secondsEl = document.getElementById('countdown-seconds')!;
+    const doneEl = document.getElementById('countdown-done')!;
+
+    function update() {
+      const now = Date.now();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        el!.classList.add('hidden');
+        doneEl.classList.remove('hidden');
+        return;
+      }
+
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(update, 1000);
+  }
+
+  initCountdown();
+</script>
