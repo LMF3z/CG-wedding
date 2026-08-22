@@ -17,9 +17,11 @@ function WaxSealIcon({ size = 28 }: { size?: number }) {
       fill='none'
       stroke='currentColor'
       strokeWidth='1.5'
-      className='opacity-70'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='opacity-75'
     >
-      <path d='M12 2L15 8.5L22 9.5L17 14.5L18 21.5L12 18.5L6 21.5L7 14.5L2 9.5L9 8.5L12 2Z' />
+      <path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z' />
     </svg>
   );
 }
@@ -152,12 +154,12 @@ export default function RsvpWidget() {
       {/* Wax Seal Button */}
       <button
         onClick={() => setOpen(true)}
-        className='wax-seal mx-auto'
+        className='wax-seal mx-auto animate-seal-pulse group'
         type='button'
       >
-        <div className='flex flex-col items-center gap-0.5'>
+        <div className='flex flex-col items-center gap-1'>
           <WaxSealIcon />
-          <span className='font-display text-[8px] tracking-[0.15em] uppercase font-semibold leading-tight'>
+          <span className='font-display text-[8px] tracking-[0.18em] uppercase font-semibold leading-tight'>
             Confirmar
           </span>
         </div>
@@ -211,7 +213,7 @@ export default function RsvpWidget() {
                 <form onSubmit={handleCheck} className='space-y-6'>
                   <div>
                     <label className='block text-burgundy/50 text-[9px] tracking-[0.45em] uppercase font-body mb-2.5'>
-                      Nombre Completo
+                      Nombre y Apellido
                     </label>
                     <input
                       type='text'
@@ -219,7 +221,7 @@ export default function RsvpWidget() {
                       autoFocus
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder='Escribe tu nombre como aparece en la invitacion'
+                      placeholder='Escribe tu nombre y apellido'
                       className='w-full bg-transparent border border-dashed border-gold/30 focus:border-gold py-2.5 px-3 text-burgundy text-sm outline-none transition-colors duration-300 font-body placeholder:text-burgundy/20'
                     />
                     {notFound && (
@@ -264,12 +266,12 @@ export default function RsvpWidget() {
                   <button
                     onClick={handleConfirm}
                     disabled={confirming}
-                    className='wax-seal mx-auto mb-4'
+                    className='wax-seal mx-auto mb-4 animate-seal-pulse group'
                     type='button'
                   >
-                    <div className='flex flex-col items-center gap-0.5'>
+                    <div className='flex flex-col items-center gap-1'>
                       <WaxSealIcon />
-                      <span className='font-display text-[8px] tracking-[0.15em] uppercase font-semibold leading-tight'>
+                      <span className='font-display text-[8px] tracking-[0.18em] uppercase font-semibold leading-tight'>
                         {confirming ? 'Confirmando...' : 'Confirmar'}
                       </span>
                     </div>

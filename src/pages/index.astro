@@ -10,12 +10,13 @@ import Countdown from '../components/Countdown.astro';
 import RsvpCta from '../components/RsvpCta.astro';
 import Footer from '../components/Footer.astro';
 import AudioBackground from '../components/AudioBackground.astro';
+import pageBg from '../assets/images/photo-1.jpeg';
 ---
 
 <BaseLayout title='Nuestra Boda'>
   <WelcomeEnvelope />
   <AudioBackground />
-  <div class='bg-paper-texture text-burgundy min-h-screen font-sans overflow-x-hidden'>
+  <div class='page-bg text-burgundy min-h-screen font-sans overflow-x-hidden' style={`--page-bg: url(${pageBg.src})`}>
     <Hero />
 
     <!-- Blockquote section on cream -->
@@ -24,7 +25,7 @@ import AudioBackground from '../components/AudioBackground.astro';
         <blockquote class='px-2 mb-8 sm:col-span-3 border-scalloped p-8 bg-cream/50'>
           <p
             class='font-serif text-burgundy/70 italic leading-relaxed'
-            style='font-size: clamp(1rem, 3.5vw, 1.2rem)'
+            style='font-size: clamp(1.1rem, 4vw, 1.4rem)'
           >
             "Guiados por la fe y el carino de nuestros padres, hoy comenzamos un
             nuevo camino juntos. Te esperamos para celebrar nuestra union

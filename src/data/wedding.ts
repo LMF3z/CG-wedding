@@ -2,7 +2,7 @@ import heroImage from '../assets/images/photo-1.jpeg';
 import photo2 from '../assets/images/photo-2.jpeg';
 import photo3 from '../assets/images/photo-3.jpeg';
 import photo4 from '../assets/images/photo-4.jpeg';
-import audioBackground from '../assets/audios/Imagine Dragons - Next To Me.mp3';
+import audioBackground from '../assets/audios/Harry James - It_s Been A Long Time.mp3';
 
 export const WEDDING_DATE = '24 · Septiembre · 2026';
 
