@@ -1,0 +1,130 @@
+---
+
+---
+
+<div
+  id='welcome-envelope'
+  class='fixed inset-0 z-100 flex items-center justify-center bg-burgundy-texture'
+>
+  <!-- Envelope body -->
+  <div class='relative w-full max-w-md mx-4' style='perspective: 1200px;'>
+    <!-- Envelope back -->
+    <div
+      class='relative bg-burgundy-texture rounded-sm overflow-hidden'
+      style='min-height: 320px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);'
+    >
+      <!-- Envelope V-flap (top triangle) -->
+      <div
+        id='envelope-flap'
+        class='absolute top-0 left-0 right-0 z-10 origin-top'
+        style='transform-style: preserve-3d;'
+      >
+        <svg viewBox='0 0 400 180' class='w-full' style='display: block;'>
+          <polygon points='0,0 400,0 200,180' fill='#5E0B20'></polygon>
+          <polygon
+            points='0,0 400,0 200,180'
+            fill='url(#flapGrad)'
+            opacity='0.3'></polygon>
+          <defs>
+            <linearGradient id='flapGrad' x1='0' y1='0' x2='0' y2='1'>
+              <stop offset='0%' stop-color='#3d0714'></stop>
+              <stop offset='100%' stop-color='#5E0B20'></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- Envelope front face (visible after flap opens) -->
+      <div class='relative p-8 pt-24 text-center'>
+        <!-- Decorative scalloped border inside envelope -->
+        <div class='border-scalloped p-8 bg-cream/10'>
+          <p
+            class='font-body text-cream/60 text-[9px] tracking-[0.55em] uppercase mb-4'
+          >
+            Con toda nuestra alegria
+          </p>
+          <p
+            class='font-body text-cream/40 text-[9px] tracking-[0.4em] uppercase mb-6'
+          >
+            Los invitamos a celebrar
+          </p>
+          <div class='w-12 h-px bg-gold/30 mx-auto mb-6'></div>
+          <p
+            class='font-script text-gold'
+            style='font-size: 2.5rem; line-height: 1.2;'
+          >
+            Genesis & Cesar
+          </p>
+          <div class='w-12 h-px bg-gold/30 mx-auto mt-6 mb-6'></div>
+          <p
+            class='font-display text-cream/50 text-[10px] tracking-[0.35em] uppercase'
+          >
+            24 . Septiembre . 2026
+          </p>
+        </div>
+
+        <!-- Wax seal button to enter -->
+        <div class='mt-8 flex justify-center'>
+          <button
+            id='open-envelope'
+            class='wax-seal animate-seal-pulse'
+            type='button'
+          >
+            <div class='flex flex-col items-center gap-0.5'>
+              <svg
+                width='28'
+                height='28'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='1.5'
+                class='opacity-70'
+              >
+                <path
+                  d='M12 2L15 8.5L22 9.5L17 14.5L18 21.5L12 18.5L6 21.5L7 14.5L2 9.5L9 8.5L12 2Z'
+                ></path>
+              </svg>
+              <span
+                class='font-display text-[7px] tracking-[0.15em] uppercase font-semibold'
+                >Abrir</span
+              >
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const envelope = document.getElementById('welcome-envelope');
+  const openBtn = document.getElementById('open-envelope');
+  const flap = document.getElementById('envelope-flap');
+
+  if (openBtn && envelope && flap) {
+    openBtn.addEventListener('click', () => {
+      flap.style.transition = 'transform 1s ease-in-out';
+      flap.style.transform = 'rotateX(-180deg)';
+
+      setTimeout(() => {
+        envelope.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        envelope.style.opacity = '0';
+        envelope.style.transform = 'scale(1.05)';
+
+        setTimeout(() => {
+          envelope.style.display = 'none';
+        }, 800);
+
+        setTimeout(() => {
+          const playSoundEvent = new CustomEvent('play:song', {
+            detail: {
+              play: true,
+            },
+          });
+
+          window.dispatchEvent(playSoundEvent);
+        }, 600);
+      }, 600);
+    });
+  }
+</script>

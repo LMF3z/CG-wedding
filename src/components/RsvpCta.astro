@@ -1,26 +1,65 @@
 ---
-import OrnamentDivider from './ornaments/OrnamentDivider.astro';
 import RsvpWidget from './RsvpWidget';
+import FloralAccent from './FloralAccent.astro';
 
 const rsvpDeadline = '15 de septiembre de 2026';
 ---
 
-<section class='py-24 md:py-32 px-4 sm:px-6 bg-card text-center'>
-  <div class='max-w-md mx-auto'>
-    <OrnamentDivider />
-    <h2
-      class='font-display text-foreground tracking-[0.2em] mt-6 mb-4 uppercase'
-      style='font-size: clamp(1.4rem, 5vw, 2.2rem)'
-    >
-      Confirma tu Asistencia
-    </h2>
-    <p class='text-foreground/45 text-sm font-body leading-relaxed mb-10'>
-      Tu presencia es el regalo más hermoso que puedes darnos.
-      <br />
-      Lluvía de sobres
-      <br />
-      Confirma antes del <span class='text-accent'>{rsvpDeadline}</span>.
-    </p>
-    <RsvpWidget client:load />
+<section
+  class='py-24 md:py-32 px-4 sm:px-6 bg-paper-texture text-center relative overflow-hidden'
+>
+  <FloralAccent position='top-left' opacity={0.3} />
+  <FloralAccent position='bottom-right' opacity={0.3} />
+
+  <div class='max-w-md mx-auto relative z-10'>
+    <!-- Scallop bordered card -->
+    <div class='border-scalloped p-8 sm:p-12 bg-cream/50'>
+      <div class='flex items-center gap-3 text-gold justify-center mb-5'>
+        <div class='flex-1 h-px bg-gold opacity-25 max-w-15'></div>
+        <svg
+          width='7'
+          height='7'
+          viewBox='0 0 10 10'
+          fill='currentColor'
+          style='opacity:0.5'
+        >
+          <polygon points='5,0 10,5 5,10 0,5'></polygon>
+        </svg>
+        <div class='w-2 h-px bg-gold opacity-35'></div>
+        <svg width='11' height='11' viewBox='0 0 10 10' fill='currentColor'>
+          <polygon points='5,0 10,5 5,10 0,5'></polygon>
+        </svg>
+        <div class='w-2 h-px bg-gold opacity-35'></div>
+        <svg
+          width='7'
+          height='7'
+          viewBox='0 0 10 10'
+          fill='currentColor'
+          style='opacity:0.5'
+        >
+          <polygon points='5,0 10,5 5,10 0,5'></polygon>
+        </svg>
+        <div class='flex-1 h-px bg-gold opacity-25 max-w-15'></div>
+      </div>
+
+      <h2
+        class='font-display text-burgundy tracking-[0.2em] mt-4 mb-4 uppercase'
+        style='font-size: clamp(1.4rem, 5vw, 2.2rem)'
+      >
+        Confirma tu Asistencia
+      </h2>
+      <p
+        class='text-burgundy/50 text-sm font-serif italic leading-relaxed mb-10'
+      >
+        Tu presencia es el regalo mas hermoso que puedes darnos.
+        <br />
+        Lluvia de sobres
+        <br />
+        Confirma antes del <span class='text-gold font-medium not-italic'
+          >{rsvpDeadline}</span
+        >.
+      </p>
+      <RsvpWidget client:load />
+    </div>
   </div>
 </section>

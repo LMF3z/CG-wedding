@@ -1,11 +1,59 @@
 import { useState } from 'react';
-import { X, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 type View = 'entry' | 'found' | 'already' | 'confirmed';
 
 interface FoundGuest {
   name: string;
   passes: number;
+}
+
+function WaxSealIcon({ size = 28 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.5'
+      className='opacity-70'
+    >
+      <path d='M12 2L15 8.5L22 9.5L17 14.5L18 21.5L12 18.5L6 21.5L7 14.5L2 9.5L9 8.5L12 2Z' />
+    </svg>
+  );
+}
+
+function OrnamentDivider() {
+  return (
+    <div className='flex items-center gap-3 text-gold'>
+      <div className='flex-1 h-px bg-gold opacity-25' />
+      <svg
+        width='7'
+        height='7'
+        viewBox='0 0 10 10'
+        fill='currentColor'
+        style={{ opacity: 0.5 }}
+      >
+        <polygon points='5,0 10,5 5,10 0,5' />
+      </svg>
+      <div className='w-2 h-px bg-gold opacity-35' />
+      <svg width='11' height='11' viewBox='0 0 10 10' fill='currentColor'>
+        <polygon points='5,0 10,5 5,10 0,5' />
+      </svg>
+      <div className='w-2 h-px bg-gold opacity-35' />
+      <svg
+        width='7'
+        height='7'
+        viewBox='0 0 10 10'
+        fill='currentColor'
+        style={{ opacity: 0.5 }}
+      >
+        <polygon points='5,0 10,5 5,10 0,5' />
+      </svg>
+      <div className='flex-1 h-px bg-gold opacity-25' />
+    </div>
+  );
 }
 
 export default function RsvpWidget() {
@@ -101,208 +149,196 @@ export default function RsvpWidget() {
 
   return (
     <>
+      {/* Wax Seal Button */}
       <button
         onClick={() => setOpen(true)}
-        className='px-12 py-4 border border-accent/50 text-accent hover:bg-accent hover:text-background font-body text-[10px] tracking-[0.45em] uppercase transition-all duration-300'
+        className='wax-seal mx-auto'
+        type='button'
       >
-        Confirmar Asistencia
+        <div className='flex flex-col items-center gap-0.5'>
+          <WaxSealIcon />
+          <span className='font-display text-[8px] tracking-[0.15em] uppercase font-semibold leading-tight'>
+            Confirmar
+          </span>
+        </div>
       </button>
 
       {open && (
         <div
           className='fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4'
-          style={{ backgroundColor: 'rgba(12,2,5,0.94)' }}
+          style={{ backgroundColor: 'rgba(62, 7, 20, 0.94)' }}
           onClick={(e) => {
             if (e.target === e.currentTarget) closeModal();
           }}
         >
-          <div className='relative w-full sm:max-w-md bg-card border border-accent/25 p-8 sm:p-10 max-h-[92vh] overflow-y-auto sm:rounded-none rounded-t-2xl'>
-            <button
-              onClick={closeModal}
-              className='absolute top-5 right-5 text-foreground/30 hover:text-accent transition-colors duration-200 p-1'
-              aria-label='Cerrar'
-            >
-              <X size={17} />
-            </button>
+          <div className='relative w-full sm:max-w-md bg-cream border border-gold/20 sm:rounded-none rounded-t-2xl max-h-[92vh] overflow-y-auto'>
+            {/* Decorative scalloped card */}
+            <div className='border-scalloped m-3 p-6 sm:p-8 bg-paper-texture'>
+              <button
+                onClick={closeModal}
+                className='absolute top-6 right-6 text-burgundy/30 hover:text-gold transition-colors duration-200 p-1 z-10'
+                aria-label='Cerrar'
+              >
+                <svg
+                  width='17'
+                  height='17'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeWidth='2'
+                >
+                  <path d='M18 6L6 18M6 6l12 12' />
+                </svg>
+              </button>
 
-            <div className='text-center mb-8'>
-              <div className='flex items-center gap-3 text-accent'>
-                <div className='flex-1 h-px bg-accent opacity-25' />
-                <svg
-                  width={7}
-                  height={7}
-                  viewBox='0 0 10 10'
-                  fill='currentColor'
-                  className='shrink-0'
-                  style={{ opacity: 0.5 }}
-                >
-                  <polygon points='5,0 10,5 5,10 0,5' />
-                </svg>
-                <div className='w-2 h-px bg-accent opacity-35' />
-                <svg
-                  width={11}
-                  height={11}
-                  viewBox='0 0 10 10'
-                  fill='currentColor'
-                  className='shrink-0'
-                >
-                  <polygon points='5,0 10,5 5,10 0,5' />
-                </svg>
-                <div className='w-2 h-px bg-accent opacity-35' />
-                <svg
-                  width={7}
-                  height={7}
-                  viewBox='0 0 10 10'
-                  fill='currentColor'
-                  className='shrink-0'
-                  style={{ opacity: 0.5 }}
-                >
-                  <polygon points='5,0 10,5 5,10 0,5' />
-                </svg>
-                <div className='flex-1 h-px bg-accent opacity-25' />
+              <div className='text-center mb-8'>
+                <OrnamentDivider />
+                <h3 className='font-display text-xl tracking-[0.25em] text-burgundy uppercase mt-5'>
+                  Confirmación
+                </h3>
+                <p className='font-body text-gold text-[9px] tracking-[0.55em] uppercase mt-3'>
+                  de Asistencia
+                </p>
               </div>
-              <h3 className='font-display text-xl tracking-[0.25em] text-foreground uppercase mt-5'>
-                Confirmación
-              </h3>
-              <p className='font-body text-accent/60 text-[9px] tracking-[0.55em] uppercase mt-5'>
-                de Asistencia
-              </p>
-            </div>
 
-            {fatalError && (
-              <p className='text-destructive text-xs font-body text-center mb-5'>
-                Algo salió mal. Intenta de nuevo.
-              </p>
-            )}
+              {fatalError && (
+                <p className='text-deep-red text-xs font-body text-center mb-5'>
+                  Algo salio mal. Intenta de nuevo.
+                </p>
+              )}
 
-            {view === 'entry' && (
-              <form onSubmit={handleCheck} className='space-y-6'>
-                <div>
-                  <label className='block text-foreground/45 text-[9px] tracking-[0.45em] uppercase font-body mb-2.5'>
-                    Nombre Completo
-                  </label>
-                  <input
-                    type='text'
-                    required
-                    autoFocus
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder='Escribe tu nombre como aparece en la invitación'
-                    className='w-full bg-transparent border-b border-accent/30 focus:border-accent py-2.5 text-foreground text-sm outline-none transition-colors duration-300 font-body placeholder:text-foreground/15'
-                  />
-                  {notFound && (
-                    <p className='text-destructive text-xs font-body mt-3'>
-                      No encontramos tu nombre en la lista de invitados.
-                      Verifícalo e intenta de nuevo.
+              {view === 'entry' && (
+                <form onSubmit={handleCheck} className='space-y-6'>
+                  <div>
+                    <label className='block text-burgundy/50 text-[9px] tracking-[0.45em] uppercase font-body mb-2.5'>
+                      Nombre Completo
+                    </label>
+                    <input
+                      type='text'
+                      required
+                      autoFocus
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder='Escribe tu nombre como aparece en la invitacion'
+                      className='w-full bg-transparent border border-dashed border-gold/30 focus:border-gold py-2.5 px-3 text-burgundy text-sm outline-none transition-colors duration-300 font-body placeholder:text-burgundy/20'
+                    />
+                    {notFound && (
+                      <p className='text-deep-red text-xs font-body mt-3'>
+                        No encontramos tu nombre en la lista de invitados.
+                        Verificalo e intenta de nuevo.
+                      </p>
+                    )}
+                  </div>
+
+                  <button
+                    type='submit'
+                    disabled={checking}
+                    className='w-full py-4 bg-burgundy text-gold hover:bg-burgundy-light font-body text-[10px] tracking-[0.45em] uppercase transition-all duration-300 mt-2 disabled:opacity-60 disabled:cursor-not-allowed border border-dashed border-gold/30'
+                  >
+                    {checking ? 'Verificando...' : 'Continuar'}
+                  </button>
+                </form>
+              )}
+
+              {view === 'found' && guest && (
+                <div className='text-center py-6'>
+                  <p className='text-burgundy/50 text-[9px] tracking-[0.45em] uppercase font-body mb-4'>
+                    Te encontramos!
+                  </p>
+                  <p className='font-display text-xl text-burgundy tracking-wide mb-6 uppercase'>
+                    {guest.name}
+                  </p>
+
+                  <div className='border border-dashed border-gold/40 py-6 px-4 mb-8'>
+                    <p className='font-body text-gold/70 text-[9px] tracking-[0.45em] uppercase mb-2'>
+                      Pases disponibles
                     </p>
-                  )}
+                    <p className='font-display text-4xl text-gold mb-1'>
+                      {guest.passes}
+                    </p>
+                    <p className='text-burgundy/50 text-xs font-body'>
+                      {passesLabel(guest.passes)}
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={handleConfirm}
+                    disabled={confirming}
+                    className='wax-seal mx-auto mb-4'
+                    type='button'
+                  >
+                    <div className='flex flex-col items-center gap-0.5'>
+                      <WaxSealIcon />
+                      <span className='font-display text-[8px] tracking-[0.15em] uppercase font-semibold leading-tight'>
+                        {confirming ? 'Confirmando...' : 'Confirmar'}
+                      </span>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setView('entry');
+                      setName('');
+                      setNotFound(false);
+                      setGuest(null);
+                    }}
+                    className='text-burgundy/40 hover:text-gold text-[10px] tracking-[0.25em] uppercase font-body transition-colors duration-200 block mx-auto'
+                  >
+                    Usar otro nombre
+                  </button>
                 </div>
+              )}
 
-                <button
-                  type='submit'
-                  disabled={checking}
-                  className='w-full py-4 bg-accent text-background hover:bg-foreground font-body text-[10px] tracking-[0.45em] uppercase transition-all duration-300 mt-2 disabled:opacity-60 disabled:cursor-not-allowed'
-                >
-                  {checking ? 'Verificando...' : 'Continuar'}
-                </button>
-              </form>
-            )}
-
-            {view === 'found' && guest && (
-              <div className='text-center py-6'>
-                <p className='text-foreground/45 text-[9px] tracking-[0.45em] uppercase font-body mb-4'>
-                  ¡Te encontramos!
-                </p>
-                <p className='font-display text-xl text-foreground tracking-wide mb-6 uppercase'>
-                  {guest.name}
-                </p>
-
-                <div className='border border-accent/30 py-6 px-4 mb-8'>
-                  <p className='font-body text-accent/60 text-[9px] tracking-[0.45em] uppercase mb-2'>
-                    Pases disponibles
+              {view === 'already' && (
+                <div className='text-center py-8'>
+                  <Heart
+                    size={34}
+                    className='text-gold mx-auto mb-5'
+                    fill='currentColor'
+                  />
+                  <p className='font-display text-lg text-burgundy tracking-wide mb-3 uppercase'>
+                    Ya confirmaste tu asistencia
                   </p>
-                  <p className='font-display text-4xl text-accent mb-1'>
-                    {guest.passes}
+                  <p className='text-burgundy/50 text-sm font-serif italic leading-relaxed'>
+                    Nos vemos muy pronto.
+                    <br />
+                    Los esperamos con ansias.
                   </p>
-                  <p className='text-foreground/45 text-xs font-body'>
-                    {passesLabel(guest.passes)}
-                  </p>
+                  <button onClick={closeModal} className='mt-9 btn-secondary'>
+                    Cerrar
+                  </button>
                 </div>
+              )}
 
-                <button
-                  onClick={handleConfirm}
-                  disabled={confirming}
-                  className='w-full py-4 bg-accent text-background hover:bg-foreground font-body text-[10px] tracking-[0.45em] uppercase transition-all duration-300 mb-3 disabled:opacity-60 disabled:cursor-not-allowed'
-                >
-                  {confirming ? 'Confirmando...' : 'Confirmar Asistencia'}
-                </button>
-
-                <button
-                  onClick={() => {
-                    setView('entry');
-                    setName('');
-                    setNotFound(false);
-                    setGuest(null);
-                  }}
-                  className='text-foreground/40 hover:text-accent text-[10px] tracking-[0.25em] uppercase font-body transition-colors duration-200'
-                >
-                  Usar otro nombre
-                </button>
-              </div>
-            )}
-
-            {view === 'already' && (
-              <div className='text-center py-8'>
-                <Heart
-                  size={34}
-                  className='text-accent mx-auto mb-5'
-                  fill='currentColor'
-                />
-                <p className='font-display text-lg text-foreground tracking-wide mb-3 uppercase'>
-                  Ya confirmaste tu asistencia
-                </p>
-                <p className='text-foreground/45 text-sm font-body leading-relaxed'>
-                  Nos vemos muy pronto.
-                  <br />
-                  Los esperamos con ansias.
-                </p>
-                <button
-                  onClick={closeModal}
-                  className='mt-9 px-10 py-3 border border-accent/40 text-accent text-[10px] tracking-[0.35em] uppercase font-body hover:bg-accent hover:text-background transition-all duration-300'
-                >
-                  Cerrar
-                </button>
-              </div>
-            )}
-
-            {view === 'confirmed' && guest && (
-              <div className='text-center py-8'>
-                <Heart
-                  size={34}
-                  className='text-accent mx-auto mb-5'
-                  fill='currentColor'
-                />
-                <p className='font-display text-xl text-foreground tracking-wide mb-3 uppercase'>
-                  ¡Con mucho amor, gracias!
-                </p>
-                <p className='text-foreground/45 text-sm font-body leading-relaxed'>
-                  Hemos recibido tu confirmación.
-                  <br />
-                  {guest.passes} {passesLabel(guest.passes)} reservados para
-                  <br />
-                  <span className='text-accent'>{guest.name}</span>.
-                  <br />
-                  {guest.passes > 1 ? 'Los' : 'Te'} esperamos con el corazón
-                  abierto.
-                </p>
-                <button
-                  onClick={closeModal}
-                  className='mt-9 px-10 py-3 border border-accent/40 text-accent text-[10px] tracking-[0.35em] uppercase font-body hover:bg-accent hover:text-background transition-all duration-300'
-                >
-                  Cerrar
-                </button>
-              </div>
-            )}
+              {view === 'confirmed' && guest && (
+                <div className='text-center py-8'>
+                  <Heart
+                    size={34}
+                    className='text-gold mx-auto mb-5'
+                    fill='currentColor'
+                  />
+                  <p className='font-display text-xl text-burgundy tracking-wide mb-3 uppercase'>
+                    Con mucho amor, gracias!
+                  </p>
+                  <p className='text-burgundy/50 text-sm font-serif italic leading-relaxed'>
+                    Hemos recibido tu confirmacion.
+                    <br />
+                    {guest.passes} {passesLabel(guest.passes)} reservados para
+                    <br />
+                    <span className='text-gold font-medium not-italic'>
+                      {guest.name}
+                    </span>
+                    .
+                    <br />
+                    {guest.passes > 1 ? 'Los' : 'Te'} esperamos con el corazon
+                    abierto.
+                  </p>
+                  <button onClick={closeModal} className='mt-9 btn-secondary'>
+                    Cerrar
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

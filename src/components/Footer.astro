@@ -1,19 +1,54 @@
 ---
 import { WEDDING_DATE, COUPLE } from '../data/wedding';
-import OrnamentDivider from './ornaments/OrnamentDivider.astro';
+import FloralAccent from './FloralAccent.astro';
 ---
 
-<footer class='py-14 px-6 text-center bg-background border-t border-accent/15'>
-  <p class='font-script text-accent mb-3' style='font-size: 2rem'>
-    {COUPLE.groom} &amp; {COUPLE.bride}
-  </p>
-  <p class='text-foreground/25 text-[9px] tracking-[0.5em] uppercase font-body'>
-    {WEDDING_DATE}
-  </p>
-  <OrnamentDivider class='mt-8 max-w-xs mx-auto' />
-  <p
-    class='text-foreground/15 text-[9px] font-body tracking-widest mt-5 uppercase'
-  >
-    Con todo nuestro amor
-  </p>
+<footer
+  class='py-14 px-6 text-center bg-burgundy-texture border-t border-gold/15 relative overflow-hidden'
+>
+  <FloralAccent position='top-left' opacity={0.2} />
+  <FloralAccent position='top-right' opacity={0.2} />
+
+  <div class='relative z-0'>
+    <p class='font-script text-gold mb-3' style='font-size: 2rem'>
+      {COUPLE.groom} &amp; {COUPLE.bride}
+    </p>
+    <p class='text-cream/40 text-[9px] tracking-[0.5em] uppercase font-body'>
+      {WEDDING_DATE}
+    </p>
+    <div
+      class='flex items-center gap-3 text-gold justify-center mt-8 max-w-xs mx-auto'
+    >
+      <div class='flex-1 h-px bg-gold opacity-25'></div>
+      <svg
+        width='7'
+        height='7'
+        viewBox='0 0 10 10'
+        fill='currentColor'
+        style='opacity:0.5'
+      >
+        <polygon points='5,0 10,5 5,10 0,5'></polygon>
+      </svg>
+      <div class='w-2 h-px bg-gold opacity-35'></div>
+      <svg width='11' height='11' viewBox='0 0 10 10' fill='currentColor'>
+        <polygon points='5,0 10,5 5,10 0,5'></polygon>
+      </svg>
+      <div class='w-2 h-px bg-gold opacity-35'></div>
+      <svg
+        width='7'
+        height='7'
+        viewBox='0 0 10 10'
+        fill='currentColor'
+        style='opacity:0.5'
+      >
+        <polygon points='5,0 10,5 5,10 0,5'></polygon>
+      </svg>
+      <div class='flex-1 h-px bg-gold opacity-25'></div>
+    </div>
+    <p
+      class='text-cream/20 text-[9px] font-body tracking-widest mt-5 uppercase'
+    >
+      Con todo nuestro amor
+    </p>
+  </div>
 </footer>

@@ -1,19 +1,33 @@
 ---
 import { CEREMONY, RECEPTION } from '../data/wedding';
-import OrnamentDivider from './ornaments/OrnamentDivider.astro';
-import ThinRule from './ornaments/ThinRule.astro';
+import FloralAccent from './FloralAccent.astro';
 import SectionLabel from './ornaments/SectionLabel.astro';
 import InfoRow from './ornaments/InfoRow.astro';
 import WineGlassIcon from './ornaments/WineGlassIcon.astro';
 import { ClockIcon, HeartIcon, MapPinIcon } from './Icons';
 ---
 
-<section id='detalles' class='py-12 md:py-16 px-4 sm:px-6 bg-background'>
+<section id='detalles' class='py-12 md:py-16 px-4 sm:px-6 bg-paper-texture'>
   <div class='max-w-4xl mx-auto'>
-    <div class='text-center mb-16'>
-      <OrnamentDivider />
+    <div class='text-center mb-16 relative'>
+      <FloralAccent position='top-center' opacity={0.35} class='!top-[-50px]' />
+      <div class='flex items-center gap-3 text-gold justify-center mb-5'>
+        <div class='flex-1 h-px bg-gold opacity-25 max-w-[80px]' />
+        <svg width='7' height='7' viewBox='0 0 10 10' fill='currentColor' style='opacity:0.5'>
+          <polygon points='5,0 10,5 5,10 0,5' />
+        </svg>
+        <div class='w-2 h-px bg-gold opacity-35' />
+        <svg width='11' height='11' viewBox='0 0 10 10' fill='currentColor'>
+          <polygon points='5,0 10,5 5,10 0,5' />
+        </svg>
+        <div class='w-2 h-px bg-gold opacity-35' />
+        <svg width='7' height='7' viewBox='0 0 10 10' fill='currentColor' style='opacity:0.5'>
+          <polygon points='5,0 10,5 5,10 0,5' />
+        </svg>
+        <div class='flex-1 h-px bg-gold opacity-25 max-w-[80px]' />
+      </div>
       <h2
-        class='font-display text-foreground tracking-[0.25em] mt-6 uppercase'
+        class='font-display text-burgundy tracking-[0.25em] mt-6 uppercase'
         style='font-size: clamp(1.6rem, 5vw, 2.8rem)'
       >
         Los Detalles
@@ -21,93 +35,96 @@ import { ClockIcon, HeartIcon, MapPinIcon } from './Icons';
       <SectionLabel>Todo lo que necesitas saber</SectionLabel>
     </div>
 
-    <div
-      class='grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-accent/15'
-    >
-      <div class='px-4 sm:px-10 py-10'>
+    <div class='grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8'>
+      <!-- Ceremony Card -->
+      <div class='border-scalloped p-6 sm:p-10 relative bg-paper-texture'>
+        <FloralAccent position='top-right' opacity={0.25} class='!-top-4 !-right-4' />
         <div class='text-center mb-7'>
           <div
-            class='w-14 h-14 rounded-full border border-accent/35 flex items-center justify-center mx-auto mb-5'
+            class='w-14 h-14 rounded-full border-2 border-gold/40 flex items-center justify-center mx-auto mb-5'
           >
             <HeartIcon />
           </div>
           <h3
-            class='font-display text-lg tracking-[0.25em] text-foreground uppercase'
+            class='font-display text-lg tracking-[0.25em] text-burgundy uppercase'
           >
             Ceremonia
           </h3>
-          <ThinRule />
+          <div class='h-px bg-gold opacity-20 my-4' />
         </div>
 
         <div class='space-y-5 max-w-xs mx-auto'>
           <InfoRow>
             <span slot='icon'><ClockIcon /></span>
-            <span class='text-foreground text-sm'>{CEREMONY.time}</span>
-            <span class='text-foreground/40 text-xs mt-0.5'
+            <span class='text-burgundy text-sm'>{CEREMONY.time}</span>
+            <span class='text-burgundy/40 text-xs mt-0.5'
               >{CEREMONY.timeLabel}</span
             >
           </InfoRow>
           <InfoRow>
             <span slot='icon'><MapPinIcon /></span>
-            <span class='text-foreground text-sm'>{CEREMONY.venue}</span>
-            <span class='text-foreground/40 text-xs mt-0.5'
+            <span class='text-burgundy text-sm'>{CEREMONY.venue}</span>
+            <span class='text-burgundy/40 text-xs mt-0.5'
               >{CEREMONY.address}</span
             >
             <a
               href={CEREMONY.mapsUrl}
               target='_blank'
               rel='noopener noreferrer'
-              class='text-accent text-[10px] tracking-[0.25em] uppercase font-body hover:text-foreground transition-colors duration-200 mt-2 inline-flex items-center gap-1'
+              class='text-gold text-[10px] tracking-[0.25em] uppercase font-body hover:text-burgundy transition-colors duration-200 mt-2 inline-flex items-center gap-1'
             >
-              Ver en Google Maps <span class='opacity-70'>↗</span>
+              Ver en Google Maps <span class='opacity-70'>&#8599;</span>
             </a>
           </InfoRow>
         </div>
       </div>
 
-      <div class='px-4 sm:px-10 py-10'>
+      <!-- Reception Card -->
+      <div class='border-scalloped p-6 sm:p-10 relative bg-paper-texture'>
+        <FloralAccent position='top-left' opacity={0.25} class='!-top-4 !-left-4' />
         <div class='text-center mb-7'>
           <div
-            class='w-14 h-14 rounded-full border border-accent/35 flex items-center justify-center mx-auto mb-5'
+            class='w-14 h-14 rounded-full border-2 border-gold/40 flex items-center justify-center mx-auto mb-5'
           >
             <WineGlassIcon />
           </div>
           <h3
-            class='font-display text-lg tracking-[0.25em] text-foreground uppercase'
+            class='font-display text-lg tracking-[0.25em] text-burgundy uppercase'
           >
-            Recepción
+            Recepcion
           </h3>
-          <ThinRule />
+          <div class='h-px bg-gold opacity-20 my-4' />
         </div>
 
         <div class='space-y-5 max-w-xs mx-auto'>
           <InfoRow>
             <span slot='icon'><ClockIcon /></span>
-            <span class='text-foreground text-sm'>{RECEPTION.time}</span>
-            <span class='text-foreground/40 text-xs mt-0.5'
+            <span class='text-burgundy text-sm'>{RECEPTION.time}</span>
+            <span class='text-burgundy/40 text-xs mt-0.5'
               >{RECEPTION.timeLabel}</span
             >
           </InfoRow>
           <InfoRow>
             <span slot='icon'><MapPinIcon /></span>
-            <span class='text-foreground text-sm'>{RECEPTION.venue}</span>
-            <span class='text-foreground/40 text-xs mt-0.5'
+            <span class='text-burgundy text-sm'>{RECEPTION.venue}</span>
+            <span class='text-burgundy/40 text-xs mt-0.5'
               >{RECEPTION.address}</span
             >
             <a
               href={RECEPTION.mapsUrl}
               target='_blank'
               rel='noopener noreferrer'
-              class='text-accent text-[10px] tracking-[0.25em] uppercase font-body hover:text-foreground transition-colors duration-200 mt-2 inline-flex items-center gap-1'
+              class='text-gold text-[10px] tracking-[0.25em] uppercase font-body hover:text-burgundy transition-colors duration-200 mt-2 inline-flex items-center gap-1'
             >
-              Ver en Google Maps <span class='opacity-70'>↗</span>
+              Ver en Google Maps <span class='opacity-70'>&#8599;</span>
             </a>
           </InfoRow>
         </div>
       </div>
     </div>
-    <p class='text-center mt-10'>
-      Código de vestimenta: Formal / Cóctel (Opción de traje de baño para la
+
+    <p class='text-center mt-10 text-burgundy/60 font-serif italic text-sm'>
+      Codigo de vestimenta: Formal / Coctel (Opcion de traje de bano para la
       piscina)
     </p>
   </div>

@@ -1,24 +1,36 @@
 ---
 import { WEDDING_DATE_ISO } from '../data/wedding';
-import OrnamentDivider from './ornaments/OrnamentDivider.astro';
 import SectionLabel from './ornaments/SectionLabel.astro';
-import ThinRule from './ornaments/ThinRule.astro';
 ---
 
 <section
   id='cuenta-regresiva'
-  class='py-12 md:py-16 px-4 sm:px-6 bg-background'
+  class='py-12 md:py-16 px-4 sm:px-6 bg-burgundy-texture'
 >
   <div class='max-w-4xl mx-auto'>
     <div class='text-center mb-12'>
-      <OrnamentDivider />
+      <div class='flex items-center gap-3 text-gold justify-center mb-5'>
+        <div class='flex-1 h-px bg-gold opacity-25 max-w-[80px]' />
+        <svg width='7' height='7' viewBox='0 0 10 10' fill='currentColor' style='opacity:0.5'>
+          <polygon points='5,0 10,5 5,10 0,5' />
+        </svg>
+        <div class='w-2 h-px bg-gold opacity-35' />
+        <svg width='11' height='11' viewBox='0 0 10 10' fill='currentColor'>
+          <polygon points='5,0 10,5 5,10 0,5' />
+        </svg>
+        <div class='w-2 h-px bg-gold opacity-35' />
+        <svg width='7' height='7' viewBox='0 0 10 10' fill='currentColor' style='opacity:0.5'>
+          <polygon points='5,0 10,5 5,10 0,5' />
+        </svg>
+        <div class='flex-1 h-px bg-gold opacity-25 max-w-[80px]' />
+      </div>
       <h2
-        class='font-display text-foreground tracking-[0.25em] mt-6 uppercase'
+        class='font-display text-cream tracking-[0.25em] mt-6 uppercase'
         style='font-size: clamp(1.6rem, 5vw, 2.8rem)'
       >
         Cuenta Regresiva
       </h2>
-      <SectionLabel>Faltan pocos días para nuestro gran día</SectionLabel>
+      <SectionLabel>Faltan pocos dias para nuestro gran dia</SectionLabel>
     </div>
 
     <div
@@ -29,30 +41,30 @@ import ThinRule from './ornaments/ThinRule.astro';
       <div class='text-center'>
         <div
           id='countdown-days'
-          class='font-display text-foreground tracking-wider'
+          class='font-display text-gold tracking-wider'
           style='font-size: clamp(2.4rem, 8vw, 4rem)'
         >
           --
         </div>
-        <ThinRule />
+        <div class='h-px bg-gold opacity-20 my-3' />
         <p
-          class='font-body text-accent/60 tracking-[0.35em] uppercase'
+          class='font-body text-cream/50 tracking-[0.35em] uppercase'
           style='font-size: clamp(0.6rem, 2vw, 0.75rem)'
         >
-          Días
+          Dias
         </p>
       </div>
       <div class='text-center'>
         <div
           id='countdown-hours'
-          class='font-display text-foreground tracking-wider'
+          class='font-display text-gold tracking-wider'
           style='font-size: clamp(2.4rem, 8vw, 4rem)'
         >
           --
         </div>
-        <ThinRule />
+        <div class='h-px bg-gold opacity-20 my-3' />
         <p
-          class='font-body text-accent/60 tracking-[0.35em] uppercase'
+          class='font-body text-cream/50 tracking-[0.35em] uppercase'
           style='font-size: clamp(0.6rem, 2vw, 0.75rem)'
         >
           Horas
@@ -61,14 +73,14 @@ import ThinRule from './ornaments/ThinRule.astro';
       <div class='text-center'>
         <div
           id='countdown-minutes'
-          class='font-display text-foreground tracking-wider'
+          class='font-display text-gold tracking-wider'
           style='font-size: clamp(2.4rem, 8vw, 4rem)'
         >
           --
         </div>
-        <ThinRule />
+        <div class='h-px bg-gold opacity-20 my-3' />
         <p
-          class='font-body text-accent/60 tracking-[0.35em] uppercase'
+          class='font-body text-cream/50 tracking-[0.35em] uppercase'
           style='font-size: clamp(0.6rem, 2vw, 0.75rem)'
         >
           Minutos
@@ -77,14 +89,14 @@ import ThinRule from './ornaments/ThinRule.astro';
       <div class='text-center'>
         <div
           id='countdown-seconds'
-          class='font-display text-foreground tracking-wider'
+          class='font-display text-gold tracking-wider'
           style='font-size: clamp(2.4rem, 8vw, 4rem)'
         >
           --
         </div>
-        <ThinRule />
+        <div class='h-px bg-gold opacity-20 my-3' />
         <p
-          class='font-body text-accent/60 tracking-[0.35em] uppercase'
+          class='font-body text-cream/50 tracking-[0.35em] uppercase'
           style='font-size: clamp(0.6rem, 2vw, 0.75rem)'
         >
           Segundos
@@ -94,10 +106,10 @@ import ThinRule from './ornaments/ThinRule.astro';
 
     <div id='countdown-done' class='hidden text-center'>
       <p
-        class='font-serif text-foreground/80 italic'
+        class='font-serif text-gold italic'
         style='font-size: clamp(1.1rem, 3.5vw, 1.4rem)'
       >
-        ¡Es el día de nuestra boda!
+        Es el dia de nuestra boda!
       </p>
     </div>
   </div>

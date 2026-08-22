@@ -1,115 +1,158 @@
 ---
 import { Image } from 'astro:assets';
 import { HERO_IMAGE, WEDDING_DATE, COUPLE } from '../data/wedding';
-import OrnamentDivider from './ornaments/OrnamentDivider.astro';
+import FloralAccent from './FloralAccent.astro';
 import ThinRule from './ornaments/ThinRule.astro';
-import CornerOrnament from './ornaments/CornerOrnament.astro';
 import { ChevronDownIcon } from './Icons';
 ---
 
 <section
-  class='relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6'
+  class='relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-burgundy-texture px-6 py-20'
 >
-  <div class='absolute inset-0 z-0'>
-    <Image
-      src={HERO_IMAGE}
-      alt='Pareja de novios'
-      class='w-full h-full object-cover'
-      style='opacity: 0.15'
-      width={896}
-      height={1195}
-      format='webp'
-      loading='eager'
-    />
-    <div
-      class='absolute inset-0'
-      style='background: linear-gradient(180deg, #1c0509 0%, rgba(28,5,9,0.55) 35%, rgba(28,5,9,0.55) 65%, #1c0509 100%)'
-    >
+  <!-- Cream paper card centered on burgundy background -->
+  <div
+    class='relative w-full max-w-2xl mx-auto bg-paper-texture border border-gold/20 shadow-2xl px-6 sm:px-12 py-12 sm:py-16 z-10'
+  >
+    <!-- Floral accents in corners -->
+    <FloralAccent position='top-left' opacity={0.5} />
+    <FloralAccent position='top-right' opacity={0.5} />
+    <FloralAccent position='bottom-left' opacity={0.35} />
+    <FloralAccent position='bottom-right' opacity={0.35} />
+
+    <!-- Decorative top flourish -->
+    <div class='text-center mb-8'>
+      <div class='flex items-center gap-3 text-gold justify-center'>
+        <div class='flex-1 h-px bg-gold opacity-25 max-w-20'></div>
+        <svg
+          width='7'
+          height='7'
+          viewBox='0 0 10 10'
+          fill='currentColor'
+          style='opacity:0.5'
+        >
+          <polygon points='5,0 10,5 5,10 0,5'></polygon>
+        </svg>
+        <div class='w-2 h-px bg-gold opacity-35'></div>
+        <svg width='11' height='11' viewBox='0 0 10 10' fill='currentColor'>
+          <polygon points='5,0 10,5 5,10 0,5'></polygon>
+        </svg>
+        <div class='w-2 h-px bg-gold opacity-35'></div>
+        <svg
+          width='7'
+          height='7'
+          viewBox='0 0 10 10'
+          fill='currentColor'
+          style='opacity:0.5'
+        >
+          <polygon points='5,0 10,5 5,10 0,5'></polygon>
+        </svg>
+        <div class='flex-1 h-px bg-gold opacity-25 max-w-20'></div>
+      </div>
     </div>
-  </div>
 
-  <div class='absolute top-8 left-8 opacity-20 hidden sm:block'>
-    <CornerOrnament />
-  </div>
-  <div
-    class='absolute top-8 right-8 opacity-20 hidden sm:block'
-    style='transform: scaleX(-1)'
-  >
-    <CornerOrnament />
-  </div>
-  <div
-    class='absolute bottom-8 left-8 opacity-20 hidden sm:block'
-    style='transform: scaleY(-1)'
-  >
-    <CornerOrnament />
-  </div>
-  <div
-    class='absolute bottom-8 right-8 opacity-20 hidden sm:block'
-    style='transform: scale(-1,-1)'
-  >
-    <CornerOrnament />
-  </div>
-
-  <div class='relative z-10 text-center w-full max-w-lg mx-auto'>
     <p
-      class='font-body text-accent/70 text-[9px] tracking-[0.6em] uppercase mb-8'
+      class='font-body text-burgundy/70 text-[9px] tracking-[0.6em] uppercase mb-8 text-center'
     >
-      Con toda nuestra alegría, los invitamos
+      Con toda nuestra alegria, los invitamos
     </p>
 
-    <OrnamentDivider class='mb-8' />
-
     <h1
-      class='font-display text-foreground leading-none mb-1'
-      style='font-size: clamp(2.8rem, 10vw, 5.5rem); letter-spacing: 0.06em'
+      class='font-display text-burgundy leading-none mb-1 text-center'
+      style='font-size: clamp(2.4rem, 9vw, 4.5rem); letter-spacing: 0.06em'
     >
       {COUPLE.groom}
     </h1>
     <p
-      class='font-script text-accent my-1'
+      class='font-script text-gold text-center my-1'
       style='font-size: clamp(2rem, 7vw, 3.5rem)'
     >
       &amp;
     </p>
     <h1
-      class='font-display text-foreground leading-none mb-8'
-      style='font-size: clamp(2.8rem, 10vw, 5.5rem); letter-spacing: 0.06em'
+      class='font-display text-burgundy leading-none mb-8 text-center'
+      style='font-size: clamp(2.4rem, 9vw, 4.5rem); letter-spacing: 0.06em'
     >
       {COUPLE.bride}
     </h1>
 
-    <OrnamentDivider class='mb-8' />
+    <!-- Central divider -->
+    <div class='flex items-center gap-3 text-gold justify-center mb-8'>
+      <div class='flex-1 h-px bg-gold opacity-25 max-w-20'></div>
+      <svg
+        width='7'
+        height='7'
+        viewBox='0 0 10 10'
+        fill='currentColor'
+        style='opacity:0.5'
+      >
+        <polygon points='5,0 10,5 5,10 0,5'></polygon>
+      </svg>
+      <div class='w-2 h-px bg-gold opacity-35'></div>
+      <svg width='11' height='11' viewBox='0 0 10 10' fill='currentColor'>
+        <polygon points='5,0 10,5 5,10 0,5'></polygon>
+      </svg>
+      <div class='w-2 h-px bg-gold opacity-35'></div>
+      <svg
+        width='7'
+        height='7'
+        viewBox='0 0 10 10'
+        fill='currentColor'
+        style='opacity:0.5'
+      >
+        <polygon points='5,0 10,5 5,10 0,5'></polygon>
+      </svg>
+      <div class='flex-1 h-px bg-gold opacity-25 max-w-20'></div>
+    </div>
 
-    <blockquote class='px-2 mb-8'>
+    <blockquote class='px-2 mb-8 text-center'>
       <p
-        class='font-serif text-foreground/80 italic leading-relaxed'
+        class='font-serif text-burgundy/80 italic leading-relaxed'
         style='font-size: clamp(1rem, 3.5vw, 1.2rem)'
       >
-        "Y sobre todas estas cosas, vestíos de amor, que es el vínculo
+        "Y sobre todas estas cosas, vestios de amor, que es el vinculo
         perfecto."
       </p>
-
-      <p>Colosenses 3:14</p>
+      <p
+        class='font-body text-burgundy/40 text-[10px] tracking-[0.3em] uppercase mt-3'
+      >
+        Colosenses 3:14
+      </p>
     </blockquote>
 
     <ThinRule />
 
     <p
-      class='font-display text-accent tracking-[0.35em] text-sm mt-5 uppercase'
+      class='font-display text-gold tracking-[0.35em] text-sm mt-5 uppercase text-center'
     >
       {WEDDING_DATE}
     </p>
-
-    <button
-      data-discover
-      class='mt-16 flex flex-col items-center gap-2 mx-auto text-foreground/25 hover:text-accent transition-colors duration-500 cursor-pointer'
-    >
-      <span class='font-body text-[9px] tracking-[0.5em] uppercase'>
-        Descubrir
-      </span>
-      <ChevronDownIcon />
-    </button>
   </div>
+
+  <!-- Background image (faint) -->
+  <div class='absolute inset-0 z-0'>
+    <Image
+      src={HERO_IMAGE}
+      alt='Pareja de novios'
+      class='w-full h-full object-cover'
+      style='opacity: 0.08'
+      width={896}
+      height={1195}
+      format='webp'
+      loading='eager'
+    />
+    <div class='absolute inset-0 bg-burgundy/70'></div>
+  </div>
+
+  <!-- Discover button -->
+  <button
+    data-discover
+    class='relative z-10 mt-12 flex flex-col items-center gap-2 mx-auto text-cream/40 hover:text-gold transition-colors duration-500 cursor-pointer'
+  >
+    <span class='font-body text-[9px] tracking-[0.5em] uppercase'
+      >Descubrir</span
+    >
+    <ChevronDownIcon />
+  </button>
 </section>
 
 <script>

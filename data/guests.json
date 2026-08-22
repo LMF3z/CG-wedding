@@ -116,8 +116,8 @@
   {
     "name": "Adrian Pensó",
     "passes": 1,
-    "confirmed": false,
-    "confirmedAt": null
+    "confirmed": true,
+    "confirmedAt": "2026-08-22T16:45:45.529Z"
   },
   {
     "name": "Joaquín Soto",

@@ -1,0 +1,54 @@
+---
+interface Props {
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top-center';
+  class?: string;
+  opacity?: number;
+}
+
+const { position = 'top-left', class: className = '', opacity = 0.6 } = Astro.props;
+
+const positionClasses: Record<string, string> = {
+  'top-left': 'top-0 left-0',
+  'top-right': 'top-0 right-0 -scale-x-100',
+  'bottom-left': 'bottom-0 left-0 -scale-y-100',
+  'bottom-right': 'bottom-0 right-0 scale-[-1]',
+  'top-center': 'top-0 left-1/2 -translate-x-1/2',
+};
+---
+
+<div class={`absolute pointer-events-none ${positionClasses[position]} ${className}`} style={`opacity: ${opacity}`}>
+  <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main rose -->
+    <g opacity="0.9">
+      <ellipse cx="45" cy="40" rx="18" ry="16" fill="#A52A2A" opacity="0.7"/>
+      <ellipse cx="42" cy="37" rx="14" ry="12" fill="#A52A2A" opacity="0.5"/>
+      <ellipse cx="40" cy="35" rx="10" ry="9" fill="#c94040" opacity="0.6"/>
+      <circle cx="40" cy="34" r="5" fill="#d4606a" opacity="0.4"/>
+    </g>
+    <!-- Secondary rose bud -->
+    <g opacity="0.7">
+      <ellipse cx="75" cy="28" rx="10" ry="9" fill="#FFC0CB" opacity="0.6"/>
+      <ellipse cx="73" cy="26" rx="7" ry="6" fill="#FFC0CB" opacity="0.5"/>
+      <circle cx="73" cy="25" r="3" fill="#ffd4de" opacity="0.4"/>
+    </g>
+    <!-- Small peach flower -->
+    <g opacity="0.6">
+      <ellipse cx="25" cy="65" rx="8" ry="7" fill="#FFC0CB" opacity="0.5"/>
+      <ellipse cx="24" cy="63" rx="5" ry="4.5" fill="#ffd4de" opacity="0.4"/>
+    </g>
+    <!-- Leaves -->
+    <g opacity="0.5">
+      <ellipse cx="60" cy="50" rx="12" ry="5" transform="rotate(-30 60 50)" fill="#5E0B20" opacity="0.3"/>
+      <ellipse cx="30" cy="52" rx="10" ry="4" transform="rotate(20 30 52)" fill="#5E0B20" opacity="0.25"/>
+      <ellipse cx="85" cy="38" rx="9" ry="3.5" transform="rotate(-15 85 38)" fill="#5E0B20" opacity="0.2"/>
+    </g>
+    <!-- Brown accent leaves -->
+    <g opacity="0.4">
+      <ellipse cx="55" cy="60" rx="8" ry="3" transform="rotate(-45 55 60)" fill="#8B4513" opacity="0.3"/>
+      <ellipse cx="20" cy="45" rx="7" ry="2.5" transform="rotate(35 20 45)" fill="#8B4513" opacity="0.25"/>
+    </g>
+    <!-- Stems / vine lines -->
+    <path d="M45 55 Q55 65 70 58" stroke="#5E0B20" stroke-width="0.8" opacity="0.2" fill="none"/>
+    <path d="M25 70 Q35 60 50 55" stroke="#5E0B20" stroke-width="0.6" opacity="0.15" fill="none"/>
+  </svg>
+</div>

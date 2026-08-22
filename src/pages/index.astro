@@ -2,6 +2,7 @@
 export const prerender = true;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WelcomeEnvelope from '../components/WelcomeEnvelope.astro';
 import Hero from '../components/Hero.astro';
 import Gallery from '../components/Gallery.astro';
 import Details from '../components/Details.astro';
@@ -12,28 +13,30 @@ import AudioBackground from '../components/AudioBackground.astro';
 ---
 
 <BaseLayout title='Nuestra Boda'>
+  <WelcomeEnvelope />
   <AudioBackground />
-  <div
-    class='bg-background text-foreground min-h-screen font-sans overflow-x-hidden'
-  >
+  <div class='bg-paper-texture text-burgundy min-h-screen font-sans overflow-x-hidden'>
     <Hero />
-    <Gallery />
 
-    <div class='text-center w-[90%] md:w-1/2 m-auto mt-12 md:mt-16'>
-      <blockquote class='px-2 mb-8 sm:col-span-3'>
-        <p
-          class='font-serif text-foreground/80 italic leading-relaxed'
-          style='font-size: clamp(1rem, 3.5vw, 1.2rem)'
-        >
-          "Guiados por la fe y el cariño de nuestros padres, hoy comenzamos un
-          nuevo camino juntos. Te esperamos para celebrar nuestra unión
-          matrimonial"
-        </p>
-      </blockquote>
+    <!-- Blockquote section on cream -->
+    <div class='bg-paper-texture py-12 md:py-16 px-4 sm:px-6'>
+      <div class='text-center w-[90%] md:w-1/2 m-auto relative'>
+        <blockquote class='px-2 mb-8 sm:col-span-3 border-scalloped p-8 bg-cream/50'>
+          <p
+            class='font-serif text-burgundy/70 italic leading-relaxed'
+            style='font-size: clamp(1rem, 3.5vw, 1.2rem)'
+          >
+            "Guiados por la fe y el carino de nuestros padres, hoy comenzamos un
+            nuevo camino juntos. Te esperamos para celebrar nuestra union
+            matrimonial"
+          </p>
+        </blockquote>
+      </div>
     </div>
 
+    <Gallery />
     <Details />
-    <Countdown client:load />
+    <Countdown />
     <RsvpCta />
     <Footer />
   </div>

@@ -12,50 +12,54 @@ const confirmedCount = guests.filter((g) => g.confirmed).length;
 
 <BaseLayout title='Confirmaciones'>
   <main
-    class='min-h-screen px-4 md:px-32 py-10 font-sans text-foreground bg-background'
+    class='min-h-screen px-4 md:px-32 py-10 font-sans text-burgundy bg-paper-texture'
   >
-    <h1 class='font-display text-3xl mb-2'>Confirmaciones</h1>
-    <p class='mb-8 text-foreground/70'>
-      {guests.length} invitaciones · {confirmedCount} confirmadas
-    </p>
+    <div class='max-w-5xl mx-auto'>
+      <div class='border-scalloped p-6 sm:p-10 bg-cream/50'>
+        <h1 class='font-display text-3xl mb-2 text-burgundy'>Confirmaciones</h1>
+        <p class='mb-8 text-burgundy/60 font-serif italic'>
+          {guests.length} invitaciones · {confirmedCount} confirmadas
+        </p>
 
-    <div class='overflow-x-auto'>
-      <table class='w-full text-left border-collapse text-sm'>
-        <thead>
-          <tr
-            class='border-b border-foreground/20 text-foreground/60 uppercase text-xs'
-          >
-            <th class='py-2 pr-4 font-medium'>#</th>
-            <th class='py-2 pr-4 font-medium'>Invitación</th>
-            <th class='py-2 pr-4 font-medium'>Pases</th>
-            <th class='py-2 pr-4 font-medium'>Confirmado</th>
-            <th class='py-2 font-medium'>Confirmado en</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            guests.map((guest, i) => (
-              <tr class='border-b border-foreground/10'>
-                <td class='py-2 pr-4 text-foreground/50'>{i + 1}</td>
-                <td class='py-2 pr-4'>{guest.name}</td>
-                <td class='py-2 pr-4'>{guest.passes}</td>
-                <td class='py-2 pr-4'>
-                  {guest.confirmed ? (
-                    <span class='text-green-600 font-medium'>Sí</span>
-                  ) : (
-                    <span class='text-foreground/40'>No</span>
-                  )}
-                </td>
-                <td class='py-2 text-foreground/60'>
-                  {guest.confirmedAt
-                    ? new Date(guest.confirmedAt).toLocaleString('es-VE')
-                    : '—'}
-                </td>
+        <div class='overflow-x-auto'>
+          <table class='w-full text-left border-collapse text-sm'>
+            <thead>
+              <tr
+                class='border-b border-gold/20 text-burgundy/60 uppercase text-xs'
+              >
+                <th class='py-2 pr-4 font-medium'>#</th>
+                <th class='py-2 pr-4 font-medium'>Invitacion</th>
+                <th class='py-2 pr-4 font-medium'>Pases</th>
+                <th class='py-2 pr-4 font-medium'>Confirmado</th>
+                <th class='py-2 font-medium'>Confirmado en</th>
               </tr>
-            ))
-          }
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {
+                guests.map((guest, i) => (
+                  <tr class='border-b border-burgundy/10'>
+                    <td class='py-2 pr-4 text-burgundy/50'>{i + 1}</td>
+                    <td class='py-2 pr-4'>{guest.name}</td>
+                    <td class='py-2 pr-4'>{guest.passes}</td>
+                    <td class='py-2 pr-4'>
+                      {guest.confirmed ? (
+                        <span class='text-gold font-medium'>Si</span>
+                      ) : (
+                        <span class='text-burgundy/40'>No</span>
+                      )}
+                    </td>
+                    <td class='py-2 text-burgundy/60'>
+                      {guest.confirmedAt
+                        ? new Date(guest.confirmedAt).toLocaleString('es-VE')
+                        : '---'}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </main>
 </BaseLayout>

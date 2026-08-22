@@ -1,0 +1,38 @@
+---
+interface Props {
+  text?: string;
+  size?: 'lg' | 'sm' | 'xs';
+  class?: string;
+  href?: string;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+}
+
+const { text = '', size = 'lg', class: className = '', href, type = 'button', disabled = false } = Astro.props;
+
+const sizeClasses = {
+  lg: 'wax-seal',
+  sm: 'wax-seal wax-seal-sm',
+  xs: 'wax-seal wax-seal-xs',
+};
+---
+
+{href ? (
+  <a href={href} class:list={[sizeClasses[size], className]} style="text-decoration: none;">
+    <div class="flex flex-col items-center gap-0.5">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="opacity-70">
+        <path d="M12 2L15 8.5L22 9.5L17 14.5L18 21.5L12 18.5L6 21.5L7 14.5L2 9.5L9 8.5L12 2Z"/>
+      </svg>
+      {text && <span class="font-display text-[8px] tracking-[0.2em] uppercase font-semibold leading-tight">{text}</span>}
+    </div>
+  </a>
+) : (
+  <button type={type} class:list={[sizeClasses[size], className]} disabled={disabled}>
+    <div class="flex flex-col items-center gap-0.5">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="opacity-70">
+        <path d="M12 2L15 8.5L22 9.5L17 14.5L18 21.5L12 18.5L6 21.5L7 14.5L2 9.5L9 8.5L12 2Z"/>
+      </svg>
+      {text && <span class="font-display text-[8px] tracking-[0.2em] uppercase font-semibold leading-tight">{text}</span>}
+    </div>
+  </button>
+)}

@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+  padding?: boolean;
+}
+
+const { class: className = '', padding = true } = Astro.props;
+---
+
+<div class:list={['border-scalloped relative', padding ? 'p-6 sm:p-10' : '', className]}>
+  <slot />
+</div>
