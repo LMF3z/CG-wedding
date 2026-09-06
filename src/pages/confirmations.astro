@@ -1,12 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { readGuests } from '../lib/guests';
+import { getGuests } from '../lib/guests';
 
 export const prerender = false;
 
-const guests = readGuests().sort((a, b) =>
-  a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }),
-);
+const guests = await getGuests();
 const confirmedCount = guests.filter((g) => g.confirmed).length;
 ---
 

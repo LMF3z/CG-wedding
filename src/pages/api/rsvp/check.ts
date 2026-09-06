@@ -15,7 +15,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const guest = findGuest(name);
+    const guest = await findGuest(name);
 
     if (!guest) {
       return new Response(

@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { findGuest, readGuests, saveGuests } from '../../../lib/guests';
+import { confirmGuest } from '../../../lib/guests';
 
 export const prerender = false;
 
@@ -15,41 +15,21 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const guest = findGuest(name);
+    const result = await confirmGuest(name);
 
-    if (!guest) {
+    if (!result) {
       return new Response(
         JSON.stringify({ ok: false, error: 'Invitado no encontrado' }),
         { status: 404, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    if (guest.confirmed) {
-      return new Response(
-        JSON.stringify({
-          ok: true,
-          alreadyConfirmed: true,
-          name: guest.name,
-          passes: guest.passes,
-        }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
-    const guests = readGuests();
-    const target = guests.find((g) => g.name === guest.name);
-    if (target) {
-      target.confirmed = true;
-      target.confirmedAt = new Date().toISOString();
-      saveGuests(guests);
-    }
-
     return new Response(
       JSON.stringify({
         ok: true,
-        alreadyConfirmed: false,
-        name: guest.name,
-        passes: guest.passes,
+        alreadyConfirmed: result.alreadyConfirmed,
+        name: result.guest.name,
+        passes: result.guest.passes,
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );

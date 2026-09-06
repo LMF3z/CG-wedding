@@ -1,7 +1,6 @@
 #!/bin/sh
 set -e
 
-mkdir -p /app/data
-node /app/sync-guests.mjs /app/seed/guests.json /app/data/guests.json
+node /app/seed-db.mjs /app/seed/guests.json
 
 exec "$@"

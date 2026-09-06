@@ -1,4 +1,4 @@
-FROM node:24-slim AS builder
+FROM node:24-bookworm AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm build
 
-FROM node:24-slim AS runtime
+FROM node:24-bookworm AS runtime
 
 WORKDIR /app
 
@@ -26,11 +26,9 @@ RUN pnpm install --frozen-lockfile --prod
 COPY --from=builder /app/dist ./dist
 
 COPY data/guests.json /app/seed/guests.json
-COPY scripts/sync-guests.mjs /app/sync-guests.mjs
+COPY scripts/seed-db.mjs /app/seed-db.mjs
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
-
-RUN mkdir -p /app/data
 
 EXPOSE 3001
 ENTRYPOINT ["/app/entrypoint.sh"]

@@ -1,5 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import pool from './db';
 
 export interface Guest {
   name: string;
@@ -7,9 +6,6 @@ export interface Guest {
   confirmed: boolean;
   confirmedAt: string | null;
 }
-
-const dataDir = resolve(process.cwd(), 'data');
-const guestsFile = resolve(dataDir, 'guests.json');
 
 export function normalizeName(value: string): string {
   return value
@@ -20,22 +16,35 @@ export function normalizeName(value: string): string {
     .replace(/\s+/g, ' ');
 }
 
-export function readGuests(): Guest[] {
-  if (!existsSync(guestsFile)) {
-    throw new Error('No se encontró la lista de invitados (data/guests.json)');
-  }
-  return JSON.parse(readFileSync(guestsFile, 'utf-8')) as Guest[];
+export async function getGuests(): Promise<Guest[]> {
+  const { rows } = await pool.query(
+    'SELECT name, passes, confirmed, confirmed_at AS "confirmedAt" FROM guests ORDER BY name ASC'
+  );
+  return rows;
 }
 
-export function saveGuests(guests: Guest[]): void {
-  if (!existsSync(dataDir)) {
-    mkdirSync(dataDir, { recursive: true });
-  }
-  writeFileSync(guestsFile, JSON.stringify(guests, null, 2), 'utf-8');
-}
-
-export function findGuest(name: string): Guest | undefined {
+export async function findGuest(name: string): Promise<Guest | undefined> {
   const normalized = normalizeName(name);
   if (!normalized) return undefined;
-  return readGuests().find((guest) => normalizeName(guest.name) === normalized);
+  const { rows } = await pool.query(
+    'SELECT name, passes, confirmed, confirmed_at AS "confirmedAt" FROM guests WHERE normalized_name = $1',
+    [normalized]
+  );
+  return rows[0];
+}
+
+export async function confirmGuest(
+  name: string
+): Promise<{ guest: Guest; alreadyConfirmed: boolean } | undefined> {
+  const guest = await findGuest(name);
+  if (!guest) return undefined;
+  if (guest.confirmed) return { guest, alreadyConfirmed: true };
+
+  const normalized = normalizeName(name);
+  await pool.query(
+    'UPDATE guests SET confirmed = true, confirmed_at = NOW() WHERE normalized_name = $1',
+    [normalized]
+  );
+
+  return { guest: { ...guest, confirmed: true, confirmedAt: new Date().toISOString() }, alreadyConfirmed: false };
 }
